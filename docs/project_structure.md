@@ -15,10 +15,14 @@ S206-JEST/
 │   │   └── sum.test.js     # A unit test for the sum function
 │   └── utils/              # Utility functions or core business logic
 │       └── sum.js          # A simple sum function
+├── .github/
+│   └── workflows/
+│       └── jest-tests.yml  # GitHub Actions workflow file for tests and build automation
 ├── .gitignore              # Specifies files and directories to be ignored by Git
 ├── jest.config.ts         # Jest configuration file (optional TypeScript format)
 ├── LICENSE                 # Project license file
 ├── package.json            # Project metadata and npm dependencies/scripts
+├── tsconfig.json          # TypeScript compiler configuration (even for JS support)
 ├── package-lock.json       # Describes the exact dependency tree for reproducibility
 └── README.md               # Main project README file
 ```
