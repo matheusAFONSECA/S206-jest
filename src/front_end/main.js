@@ -8,10 +8,12 @@ let justCalculated = false;
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    const value = btn.textContent;
+    let value = btn.textContent;
 
     if (value === "=") {
-      currentInput = calculateExpression(currentInput).toString();
+      const expression = currentInput.replace(/×/g, "*").replace(/÷/g, "/");
+      if (expression.trim() === "") return;
+      currentInput = calculateExpression(expression).toString();
       display.value = currentInput;
       justCalculated = true;
       return;
@@ -29,7 +31,14 @@ buttons.forEach((btn) => {
       return;
     }
 
-    if (!isOperator(value)) {
+    if (value === "(" || value === ")") {
+      if (justCalculated) justCalculated = false;
+      currentInput += value;
+      display.value = currentInput;
+      return;
+    }
+
+    if (!isNaN(value)) {
       if (justCalculated) {
         currentInput = "";
         justCalculated = false;
