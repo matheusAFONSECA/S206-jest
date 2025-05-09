@@ -3,50 +3,18 @@
  */
 
 import { fireEvent } from "@testing-library/dom";
-import { initCalculator } from "../modules/initCalculator.js";
-import { calculateExpression, isOperator } from "../utils/utils.js";
 import "@testing-library/jest-dom";
+import { setupCalculatorTest } from "./utils_test/utils_test.js";
 
-describe("Calculator Integration & System Tests", () => {
+describe("Calculator Integration & System Tests about sum", () => {
   let display;
   let getButton;
 
   beforeEach(() => {
-    document.body.innerHTML = `
-      <div class="calculator">
-        <input type="text" class="display" value="0" disabled />
-        <div class="buttons">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button class="operator">+</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button class="operator">-</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button class="operator">×</button>
-          <button>(</button>
-          <button>0</button>
-          <button>)</button>
-          <button class="operator">÷</button>
-          <button class="del">DEL</button>
-          <button class="ce">CE</button>
-          <button class="equal">=</button>
-        </div>
-      </div>
-    `;
-
-    // Inicializa a calculadora para cada teste
-    initCalculator(calculateExpression, isOperator);
-
-    display = document.querySelector(".display");
-    getButton = (text) =>
-      Array.from(document.querySelectorAll("button")).find(
-        (btn) => btn.textContent === text
-      );
+    // Usa a função modularizada para configurar a calculadora
+    const setup = setupCalculatorTest();
+    display = setup.display;
+    getButton = setup.getButton;
   });
 
   test("1 + 2 = should display 3", () => {
@@ -79,7 +47,7 @@ describe("Calculator Integration & System Tests", () => {
     fireEvent.click(getButton("1"));
     fireEvent.click(getButton("+"));
     fireEvent.click(getButton("2"));
-    fireEvent.click(getButton("DEL")); // apaga o 2
+    fireEvent.click(getButton("DEL"));
     fireEvent.click(getButton("3"));
     fireEvent.click(getButton("="));
     expect(display.value).toBe("4");
@@ -89,7 +57,7 @@ describe("Calculator Integration & System Tests", () => {
     fireEvent.click(getButton("1"));
     fireEvent.click(getButton("+"));
     fireEvent.click(getButton("2"));
-    fireEvent.click(getButton("CE")); // limpa tudo
+    fireEvent.click(getButton("CE"));
     fireEvent.click(getButton("5"));
     fireEvent.click(getButton("+"));
     fireEvent.click(getButton("5"));
@@ -97,7 +65,6 @@ describe("Calculator Integration & System Tests", () => {
     expect(display.value).toBe("10");
   });
 
-  // ✅ Teste com parênteses (3 + 4) + 2 = 9
   test("( 3 + 4 ) + 2 = should display 9", () => {
     fireEvent.click(getButton("("));
     fireEvent.click(getButton("3"));
@@ -110,21 +77,18 @@ describe("Calculator Integration & System Tests", () => {
     expect(display.value).toBe("9");
   });
 
-  // ✅ Teste operação inválida (1 + =)
   test("1 + = should handle error or stay stable", () => {
     fireEvent.click(getButton("1"));
     fireEvent.click(getButton("+"));
     fireEvent.click(getButton("="));
-    // Pode mostrar 'Erro' ou algo neutro dependendo de sua função
-    expect(display.value).not.toBe("");  // Verifica que não quebrou
+    expect(display.value).toBe("Erro");
   });
 
-  // ✅ Teste operação encadeada após =
   test("3 + 4 = then + 5 = should display 12", () => {
     fireEvent.click(getButton("3"));
     fireEvent.click(getButton("+"));
     fireEvent.click(getButton("4"));
-    fireEvent.click(getButton("=")); // agora 7
+    fireEvent.click(getButton("="));
     expect(display.value).toBe("7");
 
     fireEvent.click(getButton("+"));
