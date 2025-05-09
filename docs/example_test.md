@@ -9,10 +9,9 @@ This section demonstrates how to write a basic unit test using **Jest**. It uses
 This file contains a utility function that takes two numbers and returns their sum:
 
 ```js
-function sum(a, b) {
+export default function sum(a, b) {
   return a + b;
 }
-module.exports = sum;
 ```
 
 ---
@@ -22,7 +21,7 @@ module.exports = sum;
 This is the unit test file for the `sum` function. Jest's `test()` function is used to define a test case, and `expect()` is used to assert the expected result.
 
 ```js
-const sum = require('../utils/sum');
+import sum from '../utils/sum.js';
 
 test('adds 1 + 2 to equal 3', () => {
   expect(sum(1, 2)).toBe(3);
