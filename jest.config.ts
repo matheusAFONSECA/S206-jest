@@ -196,4 +196,6 @@ const config: Config = {
   // watchman: true,
 };
 
-export default config;
+export default {
+  testEnvironment: "jsdom"
+};
