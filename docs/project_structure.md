@@ -17,8 +17,8 @@ S206-JEST/
 │   │   ├── utils_test/                     # Test utilities for shared setups
 │   │   │   ├── setupCalculatorTest.js      # Utility function to initialize the calculator in tests
 │   │   │   └── calculator.html             # HTML template used to simulate the calculator interface
-│   │   └── calculator_functions/               # Test in functions in calculator
-│   │       └── sum_calculator.test.js          # Integration & system tests for the calculator
+│   │   └── calculator_functions/               # Integration & system tests for the calculator
+│   │       └── sum_calculator.test.js          # Tests for sum
 │   └── utils/              # Utility functions or core business logic
 │       └── sum.js          # A simple sum function
 ├── .github/
