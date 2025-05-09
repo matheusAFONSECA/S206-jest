@@ -4,7 +4,7 @@
 
 import { fireEvent } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-import { setupCalculatorTest } from "./utils_test/utils_test.js";
+import { setupCalculatorTest } from "../utils_test/utils_test.js";
 
 describe("Calculator Integration & System Tests about sum", () => {
   let display;
