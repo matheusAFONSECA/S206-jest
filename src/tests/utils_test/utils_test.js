@@ -3,40 +3,26 @@
  * Cria o DOM e inicializa a lógica da calculadora
  */
 
+import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 import { initCalculator } from "../../modules/initCalculator.js";
 import { calculateExpression, isOperator } from "../../utils/utils.js";
+
+// Resolve o caminho do arquivo HTML
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const htmlPath = resolve(__dirname, "calculator.html");
+
+// Lê o conteúdo do HTML
+const calculatorHTML = readFileSync(htmlPath, "utf8");
 
 /**
  * Cria e inicializa a calculadora no DOM para os testes.
  * @returns {Object} - display (input) e getButton (função para pegar botões)
- */
+*/
 export function setupCalculatorTest() {
-  document.body.innerHTML = `
-    <div class="calculator">
-      <input type="text" class="display" value="0" disabled />
-      <div class="buttons">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button class="operator">+</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button class="operator">-</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button class="operator">×</button>
-        <button>(</button>
-        <button>0</button>
-        <button>)</button>
-        <button class="operator">÷</button>
-        <button class="del">DEL</button>
-        <button class="ce">CE</button>
-        <button class="equal">=</button>
-      </div>
-    </div>
-  `;
+  document.body.innerHTML = calculatorHTML;
 
   // Inicializa a lógica da calculadora
   initCalculator(calculateExpression, isOperator);
