@@ -12,7 +12,13 @@ S206-JEST/
 ├── node_modules/           # Dependencies installed via npm
 ├── src/
 │   ├── tests/              # Directory containing all test files for the project
-│   │   └── sum.test.js     # A unit test for the sum function
+│   │   ├── sum.test.js                     # A unit test for the sum function
+│   │   ├── sum_calculator.test.js          # Integration & system tests for the calculator
+│   │   ├── utils_test/                     # Test utilities for shared setups
+│   │   │   ├── setupCalculatorTest.js      # Utility function to initialize the calculator in tests
+│   │   │   └── calculator.html             # HTML template used to simulate the calculator interface
+│   │   └── calculator_functions/               # Integration & system tests for the calculator
+│   │       └── sum_calculator.test.js          # Tests for sum
 │   └── utils/              # Utility functions or core business logic
 │       └── sum.js          # A simple sum function
 ├── .github/
