@@ -53,7 +53,7 @@ describe("Calculator Integration & System Tests about random interactions", () =
   test("Should replace the previous operator if two are entered in sequence", () => {
     fireEvent.click(getButton("8"));
     fireEvent.click(getButton("+"));
-    fireEvent.click(getButton("*")); 
+    fireEvent.click(getButton("×")); 
     fireEvent.click(getButton("2"));
     fireEvent.click(getButton("="));
     expect(display.value).toBe("16"); 
