@@ -9,11 +9,12 @@ const config: Config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
+
   // Stop running tests after `n` failures
   // bail: 0,
 
   // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "C:\\Users\\mathe\\AppData\\Local\\Temp\\jest",
+  // cacheDirectory: "C:\\Users\\Henrique\\AppData\\Local\\Temp\\jest",
 
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
@@ -45,6 +46,7 @@ const config: Config = {
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
+  
 
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
@@ -84,6 +86,8 @@ const config: Config = {
   //   "cjs",
   //   "jsx",
   //   "ts",
+  //   "mts",
+  //   "cts",
   //   "tsx",
   //   "json",
   //   "node"
@@ -108,7 +112,12 @@ const config: Config = {
   // projects: undefined,
 
   // Use this configuration option to add custom reporters to Jest
-  // reporters: undefined,
+  reporters: [
+	"default",
+	["./node_modules/jest-html-reporter", {
+		"pageTitle": "Test Report"
+	}]
+]
 
   // Automatically reset mock state before every test
   // resetMocks: false,
@@ -156,8 +165,8 @@ const config: Config = {
 
   // The glob patterns Jest uses to detect test files
   // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
+  //   "**/__tests__/**/*.?([mc])[jt]s?(x)",
+  //   "**/?(*.)+(spec|test).?([mc])[jt]s?(x)"
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
@@ -196,6 +205,4 @@ const config: Config = {
   // watchman: true,
 };
 
-export default {
-  testEnvironment: "jsdom"
-};
+export default config;
