@@ -57,7 +57,7 @@ Hello! My name is Henrique, and I am a Software Engineer Student and research sc
 
 ### [João Pedro Santos](https://github.com/joaopedromsantos)
 
-
+João Pedro Martins dos Santos, 6th year Software Engineering student at Inatel. He is a back-end software developer with knowledge of RESTful APIs, authentication and project architecture.
 
 ### [Matheus Fonseca](https://github.com/matheusAFONSECA)
 
